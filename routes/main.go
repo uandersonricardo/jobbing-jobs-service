@@ -18,6 +18,7 @@ func InitRouter() {
 	r.Use(middleware.Timeout(60 * time.Second))
 
 	r.Route("/job", job)
+	r.Route("/star", star)
 
 	http.ListenAndServe(":4002", r)
 }
