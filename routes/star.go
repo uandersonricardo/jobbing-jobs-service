@@ -9,4 +9,5 @@ func star(r chi.Router) {
 	r.Post("/", controllers.StarCreate)
 	r.Put("/{starID}", controllers.StarUpdate)
 	r.Delete("/{starID}", controllers.StarDelete)
+	r.Get("/{starID}", controllers.StarShow)
 }

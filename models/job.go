@@ -20,3 +20,27 @@ type Job struct {
 	Salary           float32              `json:"salary" bson:"salary"`
 	ExpiresIn        time.Time            `json:"expires_in" bson:"expires_in"`
 }
+
+func (f *Job) Creating() error {
+	if f.Stars == nil {
+		f.Stars = []primitive.ObjectID{}
+	}
+
+	if f.Applicants == nil {
+		f.Applicants = []primitive.ObjectID{}
+	}
+
+	return nil
+}
+
+func (f *Job) Saving() error {
+	if f.Stars == nil {
+		f.Stars = []primitive.ObjectID{}
+	}
+
+	if f.Applicants == nil {
+		f.Applicants = []primitive.ObjectID{}
+	}
+
+	return nil
+}

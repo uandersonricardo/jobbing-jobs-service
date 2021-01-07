@@ -63,24 +63,14 @@ func JobUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var updatedJob models.Job
-
-	err = json.NewDecoder(r.Body).Decode(&updatedJob)
+	err = json.NewDecoder(r.Body).Decode(&job)
 
 	if err != nil {
 		helpers.WriteError(w, "Error decoding job")
 		return
 	}
 
-	job.Name = updatedJob.Name
-	job.Description = updatedJob.Description
-	job.Vacancies = updatedJob.Vacancies
-	job.City = updatedJob.City
-	job.State = updatedJob.State
-	job.Salary = updatedJob.Salary
-	job.ExpiresIn = updatedJob.ExpiresIn
-
-	err = mgm.Coll(&job).Update(&job)
+	err = coll.Update(&job)
 
 	if err != nil {
 		helpers.WriteError(w, "Error updating job")
@@ -106,7 +96,7 @@ func JobDelete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = mgm.Coll(&job).Delete(&job)
+	err = coll.Delete(&job)
 
 	if err != nil {
 		helpers.WriteError(w, "Error deleting job")
